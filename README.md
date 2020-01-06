@@ -1,6 +1,6 @@
 # San Francisco Food Trucks data
 
-This repositiory contains a command-line python program that prints out list of open food trucks in the city of San Francisco. The program queries the Mobile Food Schedule API to get food truck data. The specification file for this project can be found [here](Redfin Take Home Prompt.pdf).
+This repositiory contains a command-line python program that prints out list of open food trucks in the city of San Francisco. The program queries the Mobile Food Schedule API to get food truck data. The specification file for this project can be found [here](https://github.com/WaleedSehgal/Redfin_challenge/blob/master/Redfin%20Take%20Home%20Prompt.pdf).
 
 ## Prerequisites to run the program
 
