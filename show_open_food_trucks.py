@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
-# Make sure to install requests and pandas before running:
+# Make sure to install requests, pandas and tabulate before running:
 # > pip install requests
 # > pip install pandas
+# > pip install tabulate
 # Documentation for the requests library can be found here: http://docs.python-requests.org/en/master/
 # Documentation for pandas can be found here: https://pandas.pydata.org/pandas-docs/stable/
+# Documentation for tabulate can be found here: https://pypi.org/project/tabulate/
 
 import os
 import sys
