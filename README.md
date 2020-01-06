@@ -1,6 +1,6 @@
 # San Francisco Food Trucks data
 
-This repositiory contains a command-line python program that prints out list of open food trucks in the city of San Francisco. The program queries the Mobile Food Schedule API to get food truck data. 
+This repositiory contains a command-line python program that prints out list of open food trucks in the city of San Francisco. The program queries the Mobile Food Schedule API to get food truck data. The specification file for this project can be found [here](./Redfin Take Home Prompt.pdf).
 
 ## Prerequisites to run the program
 
@@ -22,9 +22,14 @@ To run the program, make sure you full fill the requirements below:
         pip install request
         ```
 
-    * Install the **pandas** library to tabulate and view data, for more information on pandas, see [pandas documentation](https://pandas.pydata.org/pandas-docs/stable/). Run the following command in the terminal to install pandas.
+    * Install the **pandas** library to create data frames, for more information on pandas, see [pandas documentation](https://pandas.pydata.org/pandas-docs/stable/). Run the following command in the terminal to install pandas.
         ```
         pip install pandas
+        ```
+    
+    * Install the [**tabulate**](https://pypi.org/project/tabulate/) library to tabulate data. Run the following command in the terminal to install tabulate.
+        ```
+        pip install tabulate
         ```
     
     
@@ -45,8 +50,11 @@ To run this program from a command-line terminal follow the steps below:
     python show_open_food_trucks.py
     ```
 
-    On a successful execution, the program will display maximum 10 results at a time, it will prompt you to input 'y' to view next results or 'n' to quit.
+    On a successful execution, the program will display maximum 10 results at a time, sorted alphabatically by truck name. It will prompt you to input 'y' to view next results or 'n' to quit.
 
+## Final thoughts
+
+My thought process for the solution, has been segregate classes and functions so that they follow the Single responsibility principle of the SOLID OOP design principle. I have used the Socrata API **SoQL** query language to query the data along with the request. I believe the functionality to go back and display previous results could have been implemented, but I tried to stick with the spec. and asked the user to display the next 10 results only. 
 
 
 
