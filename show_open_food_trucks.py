@@ -42,14 +42,16 @@ class Display(object):
         data = Data()
         open_trucks = data.get_open_trucks(url)
 
+        # Handles exception cases
         if open_trucks is None:
             print("Data request not successfull!")
             sys.exit()
         
+        # If there are not trucks open
         elif len(open_trucks)==0:
             print("There are no food trucks open currently!")
             sys.exit()
-
+        
         if len(open_trucks)<10:
             print(tabulate(open_trucks, headers='keys'))
             self.EOF = True
@@ -64,6 +66,7 @@ class Data(object):
         try:
             response = requests.get(url, timeout=5)
         
+        # If any exception occurs, return nothing
         except requests.exceptions.RequestException as e:
             return None
         
@@ -98,7 +101,7 @@ if __name__ == "__main__":
 
         if not display.EOF:
             print(tabulate(trucks, headers='keys'))
-            next_results = input("Want to see more result? (Y/N)").lower()
+            next_results = input("Want to see more result? (y/n)").lower()
             if next_results=="y":
                 display.offset+=10
             else:
