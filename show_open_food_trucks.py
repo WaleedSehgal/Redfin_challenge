@@ -12,6 +12,7 @@ import json
 import requests
 import datetime
 import pandas as pd
+from tabulate import tabulate
 
 class Display(object):
 
@@ -48,7 +49,7 @@ class Display(object):
             sys.exit()
 
         if len(open_trucks)<10:
-            print(open_trucks.to_string(index=False))
+            print(tabulate(open_trucks, headers='keys'))
             self.EOF = True
         
         return open_trucks
@@ -94,7 +95,7 @@ if __name__ == "__main__":
             sys.exit()
 
         if not display.EOF:
-            print(trucks.to_string(index=False))
+            print(tabulate(trucks, headers='keys'))
             next_results = input("Want to see more result? (Y/N)").lower()
             if next_results=="y":
                 display.offset+=10
