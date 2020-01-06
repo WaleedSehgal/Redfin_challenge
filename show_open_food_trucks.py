@@ -13,7 +13,7 @@ import requests
 import datetime
 import pandas as pd
 
-class GetTrucks(object):
+class Display(object):
 
     def __init__(self):
         self.offset = 0
@@ -83,21 +83,21 @@ class Data(object):
 
 if __name__ == "__main__": 
 
-    get_trucks = GetTrucks()
+    display = Display()
     
-    while not get_trucks.EOF:
+    while not display.EOF:
         
-        trucks = get_trucks.return_open_trucks()
+        trucks = display.return_open_trucks()
         
         if trucks is None:
             print("Request timed out!")
             sys.exit()
 
-        if not get_trucks.EOF:
+        if not display.EOF:
             print(trucks.to_string(index=False))
             next_results = input("Want to see more result? (Y/N)").lower()
             if next_results=="y":
-                get_trucks.offset+=10
+                display.offset+=10
             else:
                 break
         else:
