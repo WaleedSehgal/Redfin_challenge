@@ -54,7 +54,7 @@ To run this program from a command-line terminal follow the steps below:
 
 ## Final thoughts
 
-My thought process for the solution, has been to segregate classes and functions so that they follow the Single responsibility principle of the SOLID OOP design principle. I have used the Socrata API **SoQL** query language to query the data along with the request. I believe the functionality to go back and display previous results could have been implemented, but I tried to stick with the spec. and asked the user wether to display the next 10 results only. 
+My thought process for the solution, has been to segregate classes and functions so that they follow the Single responsibility principle of the SOLID OOP design principle, which helps in testing too. I have used the Socrata API **SoQL** query language to query the data along with the request. I believe the functionality to go back and display previous results could have been implemented, but I tried to stick with the spec. and asked the user wether to display the next 10 results only. 
 
 
 
