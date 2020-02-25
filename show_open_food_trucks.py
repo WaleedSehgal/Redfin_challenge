@@ -26,7 +26,8 @@ class Display(object):
 
     # Function to generate URL 
     def get_url(self):
-        day = datetime.datetime.today().weekday()+1
+        today = datetime.datetime.today()
+        day = today.weekday()+1
         curr_time = datetime.datetime.now().time().strftime('%H:%M')
 
         url  = "http://data.sfgov.org/resource/bbb8-hzi6.json?dayorder={}&$select=applicant, location \
@@ -37,10 +38,8 @@ class Display(object):
     # Returns current open trucks
     def return_open_trucks(self):
 
-        url = self.get_url()
-
         data = Data()
-        open_trucks = data.get_open_trucks(url)
+        open_trucks = data.get_parsed_truck_data()
 
         # Handles exception cases
         if open_trucks is None:
@@ -61,7 +60,7 @@ class Display(object):
 class Data(object):
 
     # Request current open trucks
-    def get_open_trucks(self,url):
+    def get_data(self,url):
         
         try:
             response = requests.get(url, timeout=5)
@@ -71,19 +70,27 @@ class Data(object):
             return None
         
         # For status 200
-        response.encoding='utf-8'
-        data = response.json()
-        open_trucks = self.parse_truck_data(data)
+        return response
+
+        # # For status 200
+        # response.encoding='utf-8'
+        # data = response.json()
+        # open_trucks = self.parse_truck_data(data)
         
-        return open_trucks
+        # return open_trucks
     
     # Parse truck data
-    def parse_truck_data(self,data):
+    def get_parsed_truck_data(self):
+            
+            diplay = Display()
+            url = display.get_url()
+            response = self.get_data(url)
 
+            data = response.json()
             df = pd.DataFrame(columns=['NAME', 'ADDRESS'])
-
             for truck in data:
                 df = df.append({'NAME':truck['applicant'], 'ADDRESS':truck['location']}, ignore_index=True)
+
             return df
 
 
@@ -101,9 +108,15 @@ if __name__ == "__main__":
 
         if not display.EOF:
             print(tabulate(trucks, headers='keys'))
-            next_results = input("Want to see more result? (y/n)").lower()
+            next_results = input("Want to see more result? (y/n), and 'p' for previous results").lower()
             if next_results=="y":
                 display.offset+=10
+            elif next_results=="p":
+                 if display.offset>=10:
+                    display.offset-=10
+                 else:
+                     print("No more results prior to this!")
+                     break
             else:
                 break
         else:
